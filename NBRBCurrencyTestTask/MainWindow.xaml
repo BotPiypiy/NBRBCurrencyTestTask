@@ -1,0 +1,29 @@
+﻿<Window x:Class="NBRBCurrencyTestTask.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NBRBCurrencyTestTask"
+        mc:Ignorable="d"
+        Title="NBRBCurrencyTestTask" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <DatePicker SelectedDate="{Binding SelectedDate}"/>
+            <Button Content="Upload" Command="{Binding UploadRatesCommand}" ToolTip="Upload data from NBRB"/>
+            <Button Content="Update" Command="{Binding UpdateRateCommand}" ToolTip="Update changed data to file"/>
+            <Button Content="Save" Command="{Binding SaveRatesCommand}" ToolTip="Save data to file"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Rates}" SelectedItem="{Binding SelectedRate}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Abbreviation" Binding="{Binding Cur_Abbreviation}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Cur_Name}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Rate" Binding="{Binding Cur_OfficialRate}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
